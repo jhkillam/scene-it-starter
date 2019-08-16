@@ -14,3 +14,12 @@ body {
 	margin-top: 20px;
 }
 
+.movie {
+	background-color: white;
+}
+
+.movie-card-body {
+	display: flex;
+	flex-wrap: nowrap;
+	justify-content: space-between;
+}
