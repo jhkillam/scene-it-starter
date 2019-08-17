@@ -22,4 +22,92 @@ body {
 	display: flex;
 	flex-wrap: nowrap;
 	justify-content: space-between;
+	padding: 10px;
 }
+
+.movie-title {
+	font-weight: bold;
+}
+
+.release-date {
+	background-color: #50524F;
+	color: white;
+	padding: 5px;
+    border-radius: 10%;
+}
+
+.add-btn-container {
+	padding: 0px 10px 10px 10px;
+}
+
+h3 {
+	font-size: 1.25rem
+}
+
+@media (max-width: 991px) {
+	h3 {
+		font-size: .9rem;
+	}
+	.release-date {
+		font-size: .85rem;
+	}
+
+	.add-btn {
+		font-size: .85rem;
+	}
+}
+
+@media (max-width: 767px) {
+	h3 {
+		font-size: .85rem;
+	}
+	.release-date {
+		font-size: .75rem;
+	}
+	.add-btn {
+		font-size: .75rem;
+	}
+}
+
+@media (max-width: 575px) {
+	h3 {
+		font-size: .9rem;
+	}
+	.release-date {
+		font-size: .85rem;
+	}
+	.add-btn {
+		font-size: .85rem;
+	}
+}
+
+button {
+	z-index: 1;
+	color: white;
+	padding: 0.5em 1em;
+	outline: none;
+	border: none;
+	background-color: #0069d9;
+  }
+  
+  button:hover {
+	cursor: pointer;
+	animation: jelly 0.5s;
+  }
+  
+  @keyframes jelly {
+	0%,
+	100% {
+	  transform: scale(1, 1);
+	}
+	25% {
+	  transform: scale(0.9, 1.1);
+	}
+	50% {
+	  transform: scale(1.1, 0.9);
+	}
+	75% {
+	  transform: scale(0.95, 1.05);
+	}
+  }
+  
