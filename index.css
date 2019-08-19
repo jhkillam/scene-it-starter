@@ -33,7 +33,8 @@ body {
 	background-color: #50524F;
 	color: white;
 	padding: 5px;
-    border-radius: 10%;
+	border-radius: 10%;
+	margin-left: 5px;
 }
 
 .add-btn-container {
