@@ -8,21 +8,29 @@ function saveToWatchlist(movieID) {
         watchlist = []
         console.log("watchlist set to empty array")
     }
+    let urlEncodedImdbID = encodeURIComponent(movieID)
+    console.log("Clicked add on: " + urlEncodedImdbID)
+    let apiCallURL = "http://www.omdbapi.com/?apikey=3430a78&i=" + urlEncodedImdbID
+    console.log("api url: " + apiCallURL)
 
-    console.log("Clicked add on: " + movieID)
+    axios.get(apiCallURL)
+            .then(function(response){
+                console.log("Clicked add on:")
+                console.log(response.data)
+                watchlist.push(response.data)
+                watchlistJSON = JSON.stringify(watchlist)
+                localStorage.setItem('watchlist', watchlistJSON)
+                console.log("Added to watchlist")
+            })
 
-    const movieToSave = movieData.find(function(movie){
-        return movie.imdbID === movieID
-    })
-
-    console.log("found: " + movieToSave.Title)  
+    // console.log("found: " + movieToSave.Title)
     
     // this block works to save to localstorage on every add click, even if duplicate
-    watchlist.push(movieToSave)
-    watchlistJSON = JSON.stringify(watchlist)
-    localStorage.setItem('watchlist', watchlistJSON)
-    console.log(movieToSave.Title + " added to watchlist")
-    console.log(watchlist)
+    // watchlist.push(movieToSave)
+    // watchlistJSON = JSON.stringify(watchlist)
+    // localStorage.setItem('watchlist', watchlistJSON)
+    // console.log(movieToSave.Title + " added to watchlist")
+    // console.log(watchlist)
     
     // trying to figure out how to check if movie is already on watchlist. Need to map through the watchlist
     // if (movieToSave.Title in localStorage) {
@@ -61,10 +69,22 @@ function renderMovies(movieArray) {
 function init () {
     document.getElementById('search-form').addEventListener('submit', function(e){
         
-        e.preventDefault();
+        e.preventDefault()
+
+        let searchString = document.getElementById('search-bar').value
+        console.log("searched for: " + searchString)
+
+        let urlEncodedSearchString = encodeURIComponent(searchString)
+        console.log("URI encoded string: " + urlEncodedSearchString)
+
+        axios.get("http://www.omdbapi.com/?apikey=3430a78&s=" + urlEncodedSearchString)
+            .then(function(response){
+                console.log(response.data)
+                let finalHTML = document.getElementById('movies-container') 
+                finalHTML.innerHTML = renderMovies(response.data.Search)
+            })
         
-        let finalHTML = document.getElementById('movies-container') 
-        finalHTML.innerHTML = renderMovies(movieData)
+        
 
     })
 }

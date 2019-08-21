@@ -1,3 +1,5 @@
+// this file was only used for sample data while testing the initial build of the page
+
 var movieData = [
 	{
 		Title: "The Dark Knight",
