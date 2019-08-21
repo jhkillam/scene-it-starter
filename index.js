@@ -10,7 +10,7 @@ function saveToWatchlist(movieID) {
     }
     let urlEncodedImdbID = encodeURIComponent(movieID)
     console.log("Clicked add on: " + urlEncodedImdbID)
-    let apiCallURL = "http://www.omdbapi.com/?apikey=3430a78&i=" + urlEncodedImdbID
+    let apiCallURL = "https://www.omdbapi.com/?apikey=3430a78&i=" + urlEncodedImdbID
     console.log("api url: " + apiCallURL)
 
     axios.get(apiCallURL)
@@ -77,7 +77,7 @@ function init () {
         let urlEncodedSearchString = encodeURIComponent(searchString)
         console.log("URI encoded string: " + urlEncodedSearchString)
 
-        axios.get("http://www.omdbapi.com/?apikey=3430a78&s=" + urlEncodedSearchString)
+        axios.get("https://www.omdbapi.com/?apikey=3430a78&s=" + urlEncodedSearchString)
             .then(function(response){
                 console.log(response.data)
                 let finalHTML = document.getElementById('movies-container') 
