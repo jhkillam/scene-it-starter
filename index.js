@@ -1,17 +1,5 @@
 
 function saveToWatchlist(movieID) {
-    const idToFind = movieID
-
-    console.log("Clicked add on: " + idToFind)
-
-    const movieToSave = movieData.find(function(movie){
-        return movie.imdbID === idToFind
-        
-    })
-
-    // const movieToSave = movieData.find(movie => movie.imdbID === idToFind)
-
-    console.log("found: " + movieToSave.Title)
 
     var watchlistJSON = localStorage.getItem('watchlist')
     var watchlist = JSON.parse(watchlistJSON)
@@ -19,16 +7,25 @@ function saveToWatchlist(movieID) {
     if (watchlist == null) {
         watchlist = []
         console.log("watchlist set to empty array")
-    }  
+    }
+
+    console.log("Clicked add on: " + movieID)
+
+    const movieToSave = movieData.find(function(movie){
+        return movie.imdbID === movieID
+    })
+
+    console.log("found: " + movieToSave.Title)  
     
+    // this block works to save to localstorage on every add click, even if duplicate
     watchlist.push(movieToSave)
     watchlistJSON = JSON.stringify(watchlist)
     localStorage.setItem('watchlist', watchlistJSON)
     console.log(movieToSave.Title + " added to watchlist")
     console.log(watchlist)
-
-    // trying to figure out how to check if movie is already on watchlist
-    // if (watchlist.movieToSave in localStorage) {
+    
+    // trying to figure out how to check if movie is already on watchlist. Need to map through the watchlist
+    // if (movieToSave.Title in localStorage) {
     //     console.log(movieToSave.Title + " is already on the watchlist")
     //     return;
     // } else {
@@ -37,9 +34,6 @@ function saveToWatchlist(movieID) {
     //     localStorage.setItem('watchlist', watchlistJSON)
     //     console.log(movieToSave.Title + " added to watchlist")
     // }
-
-
-    
 }
 
 function renderMovies(movieArray) {
